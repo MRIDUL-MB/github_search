@@ -1,26 +1,24 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useGlobalContext } from './../context';
 function Result() {
-  const { setSearchTerm, fetchUsers } = useGlobalContext();
+  const { users } = useGlobalContext();
+
   return (
     <section className='result'>
-      <div className='stats'>2 users are found</div>
-      <div className='users'>
-        <img
-          src='https://avatars.githubusercontent.com/u/53037689?v=4'
-          alt=''
-        />
-        <div className='title'>
-          <a href=''>Mridul Bagla</a>
-        </div>
-      </div>
-      <div className='users'>
-        <img
-          src='https://avatars.githubusercontent.com/u/53037689?v=4'
-          alt=''
-        />
-        <div className='title'>Mridul Bagla</div>
-      </div>
+      {/* <div className='stats'>{users.length} users are found</div> */}
+      {users.map((item) => {
+        const { id, login, avatar_url, html_url } = item;
+        return (
+          <article key={id} className='users'>
+            <img src={avatar_url} alt={login} />
+            <div className='title'>
+              <a rel='noreferrer' href={html_url} target='_blank'>
+                {login}
+              </a>
+            </div>
+          </article>
+        );
+      })}
     </section>
   );
 }

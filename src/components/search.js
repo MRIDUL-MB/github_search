@@ -1,6 +1,16 @@
-import React from 'react';
-
+import React, { useRef, useEffect } from 'react';
+import { useGlobalContext } from './../context';
 function Search() {
+  const { setSearchTerm, fetchUsers } = useGlobalContext();
+  const refContainer = useRef('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchTerm(refContainer.current.value);
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, [refContainer.current.value]);
   return (
     <section className='search'>
       <div className='logo'>
@@ -12,15 +22,17 @@ function Search() {
         <span className='red'>H</span>
         <span className='yellow exclaim'>!</span>
       </div>
-      <form id='search-form' className='form'>
+      <form id='search-form' className='form' onSubmit={handleSubmit}>
         <input
           type='search'
           id='search-input'
-          autoComplete='false'
-          placeholder='Enter the username'
+          autoComplete='off'
+          placeholder='Eg. john'
+          ref={refContainer}
+          required
         />
         <button>
-          <i class='fas fa-search'></i>
+          <i className='fas fa-search'></i>
         </button>
       </form>
     </section>
