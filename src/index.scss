@@ -1,0 +1,162 @@
+$search-bar-border: #e6e6e6;
+$stats-color: #70757a;
+$clear-button-color: #d9d9d9;
+$background-color: #fff;
+$font-color: #000;
+$logo-blue: #4885ed;
+$logo-red: #db3236;
+$logo-yellow: #ffc107;
+$logo-green: #3cba54;
+$link-color: #1a0dab;
+$link-visited-color: #609;
+$link-outline-color: #000;
+$font-stack: 'Roboto',
+Arial,
+sans-serif;
+
+%flex {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flexColumn {
+    @extend %flex;
+    flex-direction: column;
+}
+
+@mixin flexCenter {
+    @extend %flex;
+    justify-content: center;
+}
+
+@mixin mq($size) {
+    @media screen and (min-width: $size) {
+        @content
+    }
+}
+
+
+.blue {
+    color: $logo-blue;
+}
+
+.yellow {
+    color: $logo-yellow;
+}
+
+.red {
+    color: $logo-red;
+}
+
+.green {
+    color: $logo-green;
+}
+
+.exclaim {
+    display: inline-block;
+    font-size: 2.5rem;
+    transform: rotate(12deg);
+
+    @include mq(768px) {
+        font-size: 5rem;
+    }
+}
+
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.none {
+    display: none;
+}
+
+.home {
+    @include flexColumn;
+    margin: 2rem auto;
+    width: 90vw;
+    background-color: #eee;
+
+    .search {
+        .logo {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 4rem;
+
+            @include mq(768px) {
+                font-size: 6rem;
+            }
+        }
+
+        .form {
+            @include flexCenter;
+            justify-content: space-between;
+            margin: 3rem auto;
+            padding: 1rem;
+            padding-left: 1.5rem;
+
+            width: 60vw;
+            border-radius: 10rem;
+            background: white;
+
+            input {
+                outline: none;
+                font-size: 1.250rem;
+                letter-spacing: 1px;
+                border: 0;
+            }
+
+            button {
+                display: inline-block;
+                background: transparent;
+                border: 0;
+                outline: none;
+
+                i {
+                    font-size: 2rem;
+                }
+            }
+
+            @include mq(768px) {
+                width: 45vw;
+                margin: 5rem auto;
+            }
+
+            @include mq(1024px) {
+                width: 35vw;
+            }
+        }
+    }
+
+    .result{
+        .stats{
+            margin-top: -2rem;
+            color: $stats-color;
+            font-size: 1.25rem;
+        }
+        .users{
+            @include flexColumn;
+            padding: 1rem;
+            margin-top: 1rem;
+            img{
+                width: 100px;
+                height: auto;
+                border-radius: 50%;
+            }
+            a{
+                font-family: $font-stack;
+                color: $font-color;
+                text-decoration: none;
+            }
+            .title{
+                margin:0.75rem auto;
+                text-align: center;
+                font-size: 2rem;
+            }
+        }
+    }
+}
