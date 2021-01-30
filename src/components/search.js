@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef } from 'react';
 import { useGlobalContext } from './../context';
 function Search() {
   const {
@@ -16,13 +16,16 @@ function Search() {
   return (
     <section className='search'>
       <div className='logo'>
-        <span className='blue'>S</span>
+        <h3>Github</h3>
+        <i>users</i>
+        <br />
+        {/* <span className='blue'>S</span>
         <span className='red'>E</span>
         <span className='yellow'>A</span>
         <span className='blue'>R</span>
         <span className='green'>C</span>
         <span className='red'>H</span>
-        <span className='yellow exclaim'>!</span>
+        <span className='yellow exclaim'>!</span> */}
       </div>
       <form id='search-form' className='form' onSubmit={handleSubmit}>
         <input
