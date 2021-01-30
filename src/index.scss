@@ -105,9 +105,13 @@ sans-serif;
 
             input {
                 outline: none;
-                font-size: 1.250rem;
+                font-size: 1rem;
                 letter-spacing: 1px;
                 border: 0;
+                width: 43vw;
+                @include mq(768px){
+                    font-size: 2rem;
+                }
             }
 
             button {
@@ -133,6 +137,7 @@ sans-serif;
     }
 
     .result{
+        background-color: $stats-color;
         .stats{
             text-align: center;
             margin-top: -2rem;
@@ -141,8 +146,9 @@ sans-serif;
         }
         .users{
             @include flexColumn;
+            background-color: $background-color;
             padding: 1rem;
-            margin-top: 1rem;
+            margin: 1rem auto;
             img{
                 width: 100px;
                 height: auto;

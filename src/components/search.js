@@ -1,16 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { useGlobalContext } from './../context';
 function Search() {
-  const { setSearchTerm, fetchUsers } = useGlobalContext();
+  const {
+    setSearchTerm,
+    fetchUsers,
+    showSearch,
+    setShowSearch,
+  } = useGlobalContext();
   const refContainer = useRef('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchTerm(refContainer.current.value);
-  };
-  useEffect(() => {
     fetchUsers();
-  }, [refContainer.current.value]);
+  };
   return (
     <section className='search'>
       <div className='logo'>
@@ -29,10 +31,18 @@ function Search() {
           autoComplete='off'
           placeholder='Eg. john'
           ref={refContainer}
+          onChange={() => {
+            setSearchTerm(refContainer.current.value);
+            if (refContainer.current.value) {
+              setShowSearch(true);
+            } else {
+              setShowSearch(false);
+            }
+          }}
           required
         />
         <button>
-          <i className='fas fa-search'></i>
+          <i className={showSearch ? 'fas fa-search' : 'none'}></i>
         </button>
       </form>
     </section>
